@@ -1,0 +1,12 @@
+<ul class="playlist">
+    <li ng-repeat="video in $root.queue  " ng-click="playVideo(video.id)" ng-class="{'active':video.id==$root.queue[currentIndex].id}">
+        <span class="queueNumber">{{$index +1}}</span>{{video.order}} {{video.snippet.title}} <span ng-if="$root.queue.length>1" class="delete" ng-click="removeFromQueue(video.id)">delete</span>
+    </li>
+
+</ul>
+
+
+
+<div ng-show="loadingYoutube">LOADING</div>
+
+<input type="text" class="addVideo" placeholder="Paste a Youtube link to add to queue" ng-model="videoUrl" ng-class="{'invalid':invalidUrl}">

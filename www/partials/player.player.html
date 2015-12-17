@@ -1,0 +1,40 @@
+<youtube-video style="display:none" video-id="$root.playingId"  player-vars="playerOptions" player="ytPlayer"></youtube-video>
+<div class="playerLoader" ng-if="!playerReady">
+<img src="/img/loading.svg">loading audio ...</div>
+<div class="player" ng-if="playerReady">
+    <h1>{{$root.queue[currentIndex].snippet.title}}</h1>
+    <small class="next-title" ng-show="currentIndex < $root.queue.length -1 ">next: {{$root.queue[currentIndex+1].snippet.title}} <span ng-show="$root.queue.length-currentIndex > 2">and {{$root.queue.length-currentIndex - 2}} more</span></small>
+    <div class="controls">
+        <a ng-show="playing!=true" ng-click="ytPlayer.playVideo()"><img src="img/music_play_button.svg"></a>
+        <a ng-show="playing==true" ng-click="ytPlayer.pauseVideo()"><img src="img/music_pause_button.svg"></a><br>
+    </div>
+    <div class="progressContainer">
+        <div class="progressTime">{{ytPlayer.getCurrentTime()  | secondsToDateTime | date:'HH:mm:ss'}}</div>
+        <div class="progressClickable" ng-click="jumpTo($event)" ng-mousemove="searchTo($event)">
+            <div class="progress">
+                <div class="tooltip" ng-if="searchToTime" ng-style="{'left':searchToPercent+'%'}">{{searchToTime  | secondsToDateTime | date:'HH:mm:ss'}}</div>
+                <div class="fill" ng-style="{'width':  (playerPercent)  + '%' }"></div>
+            </div>
+        </div>
+        <div class="progressTime">{{$root.playerDuration - ytPlayer.getCurrentTime()  | secondsToDateTime | date:'HH:mm:ss'}}</div>
+    </div>
+    <!--a  ng-click="saveBookmark()" >Bookmark</a-->
+    <div class="sleepTimerSelect">
+        <h2>Fall asleep after minutes:</h2>
+        <a ng-click="setSleepTime(-1)" ng-class="{'active':$root.settings.sleepTime==-1}">OFF</a>
+        <a ng-click="setSleepTime(5)" ng-class="{'active':$root.settings.sleepTime==5}">5</a>
+        <a ng-click="setSleepTime(10)" ng-class="{'active':$root.settings.sleepTime==10}">10</a>
+        <a ng-click="setSleepTime(15)" ng-class="{'active':$root.settings.sleepTime==15}">15</a>
+        <a ng-click="setSleepTime(45)" ng-class="{'active':$root.settings.sleepTime==45}">45</a>
+        <a ng-click="setSleepTime(60)" ng-class="{'active':$root.settings.sleepTime==60}">60</a>
+    </div>
+    <div class="timerProgress" ng-class="{'opaque': timerSelected<1 }">
+        <div class="fill" ng-style="{'width':  ( (sleepTimer / ($root.settings.sleepTime * 60)) * 100) + '%' }">
+        </div>
+    </div>
+    <ul class="bookmarks">
+        <li ng-click="ytPlayer.seekTo(bookmark.time);" ng-repeat="bookmark in bookmarks"><b>{{bookmark.name}}</b><br>
+            {{bookmark.time  | secondsToDateTime | date:'HH:mm:ss' }}<br>
+        <small>Created at {{ bookmark.created | date : 'EEE dd.MM, HH:mm:ss' }}</small></li>
+    </ul>
+</div>

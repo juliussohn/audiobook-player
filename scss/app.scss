@@ -1,0 +1,14 @@
+$color: red;
+
+@import "base";
+@import "typo";
+
+@import "components/button";
+
+@import "modules/create";
+@import "modules/player";
+@import "modules/player.aside";
+
+.opaque {
+    opacity: 0;
+}

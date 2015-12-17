@@ -1,0 +1,25 @@
+{
+  "name": "name",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Julius Sohn <juliussohn@icloud.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-youtube-embed": "~1.0.2",
+    "angular": "~1.4.8",
+    "hoodie-plugin-angularjs": "~0.1.1",
+    "jquery": "~2.1.4",
+    "angular-ui-router": "~0.2.15"
+  }
+}

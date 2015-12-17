@@ -1,0 +1,101 @@
+$aside-bg: #333;
+$aside-bg2: #2E2E2E;
+
+#playerAside {
+    background: #333;
+    color: #fff;
+    width: 500px;
+    height: 100vh;
+    overflow: auto;
+    position: relative;
+
+    .queueNumber {
+        display: block;
+        font-size: 20px;
+        position: absolute;
+        left: 20px;
+        top: 2px;
+        color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .delete {
+        position: absolute;
+        color: red;
+        right: 0px;
+        top: 0px;
+        bottom: 0;
+        background: red;
+        display: none;
+        z-index: 110;
+        padding: 0 15px;
+        color: white;
+    }
+
+    .playlist {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            white-space: nowrap;
+            font-size: .8em;
+
+            //padding: 20px;
+            cursor: pointer;
+            padding-left: 50px;
+
+            // padding-left: 40px;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+
+            &:after {
+                position: absolute;
+                right: 0;
+                height: 100%;
+                top: 0;
+                width: 30px;
+                content: "";
+                display: block;
+                background: linear-gradient(to right, rgba($aside-bg, 0) 0%, rgba($aside-bg, 1) 69%, rgba($aside-bg, 1) 100%);
+            }
+
+            &.active {
+                color: $color;
+            }
+
+            &:nth-child(odd) {
+                background: $aside-bg2;
+
+                &:after {
+                    background: linear-gradient(to right, rgba($aside-bg2, 0) 0%, rgba($aside-bg2, 1) 69%, rgba($aside-bg2, 1) 100%);
+                }
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.05);
+
+                .delete {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .addVideo {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border: none;
+        padding: 20px 10px;
+        font-size: 16px;
+        background: #dddddd;
+        outline: none;
+        text-align: center;
+
+        &.invalid {
+            background: #FF636B;
+        }
+    }
+}
